@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuis Ceria: Detektif Paragraf</title>
+<style>
+:root{--ink:#25304a;--pink:#ff7eb6;--yellow:#ffd166;--blue:#72d6ef;--purple:#9b8cff;--green:#70d6a5;--paper:#fffdf8}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif;background:radial-gradient(circle at 8% 12%,#ffe3ef 0 7%,transparent 7.5%),radial-gradient(circle at 92% 20%,#d9f7ff 0 8%,transparent 8.5%),radial-gradient(circle at 12% 88%,#fff0bd 0 8%,transparent 8.5%),linear-gradient(135deg,#fff6fb,#eefaff 55%,#fff9e8);padding:24px 14px 40px}
+.wrap{max-width:850px;margin:auto}header{text-align:center;margin:4px auto 22px}
+.eyebrow{display:inline-block;background:#fff;border:2px solid #f3d9e7;border-radius:999px;padding:7px 14px;font-size:.85rem;font-weight:800}
+h1{font-size:clamp(2rem,6vw,3.1rem);margin:12px 0 6px;line-height:1.05;color:#6049a8}
+.subtitle{font-size:1.05rem;margin:0;color:#59627a}
+.card{background:var(--paper);border:3px solid #fff;border-radius:26px;padding:clamp(18px,4vw,30px);box-shadow:0 12px 30px #59627a18}
+.start{text-align:center;max-width:590px;margin:auto}.start .mascot{font-size:4rem;margin:2px}
+.start h2{color:#6049a8;font-size:1.7rem;margin:5px 0}
+.start p{line-height:1.55;color:#59627a}
+.field{text-align:left;margin:20px 0 14px}
+label{display:block;font-weight:900;margin-bottom:8px}
+input{width:100%;border:2px solid #dcd5f4;border-radius:14px;padding:14px;font:inherit;font-size:1rem;outline:none}
+input:focus{border-color:#8b78df;box-shadow:0 0 0 3px #8b78df22}
+.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.pill{border-radius:999px;padding:8px 13px;font-weight:800;font-size:.9rem;background:#f0ebff;color:#6049a8}
+.progress{height:12px;background:#eeeaf7;border-radius:99px;overflow:hidden;margin:8px 0 24px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));transition:width .3s}
+.question{font-size:1.22rem;line-height:1.55;font-weight:800;white-space:pre-line;margin:0 0 18px}
+.options{display:grid;gap:11px}
+.option{display:flex;align-items:flex-start;gap:12px;text-align:left;width:100%;border:2px solid #e7e4f1;border-radius:16px;padding:14px 15px;background:#fff;color:var(--ink);font:inherit;font-size:1rem;cursor:pointer;transition:.18s}
+.option:hover:not(:disabled){transform:translateY(-2px);border-color:var(--purple);background:#faf8ff}
+.letter{flex:0 0 32px;height:32px;border-radius:11px;display:grid;place-items:center;background:#f0ebff;color:#6049a8;font-weight:900}
+.option:disabled{cursor:default;opacity:1}.option.correct{border-color:#45bd83;background:#edfff5}.option.correct .letter{background:#45bd83;color:white}
+.option.wrong{border-color:#ff879c;background:#fff1f3}.option.wrong .letter{background:#ff879c;color:white}
+.feedback{display:none;margin-top:18px;padding:16px 18px;border-radius:17px;line-height:1.5}.feedback.show{display:block}.feedback.good{background:#eafff2;border:2px solid #8bdcb1}.feedback.bad{background:#fff1f3;border:2px solid #ffb2bf}.feedback strong{display:block;margin-bottom:5px;font-size:1.05rem}
+.actions{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+button.action{border:0;border-radius:999px;padding:12px 20px;font:inherit;font-weight:900;cursor:pointer}
+.primary{background:#7058c9;color:white}.primary:hover{background:#5d45b5}.restart{background:#fff0bd;color:#6a5010}.next{display:none}
+.result{text-align:center;display:none}.result h2{font-size:2rem;color:#6049a8;margin:5px 0 8px}.score{font-size:3.5rem;font-weight:1000;color:#e45d9a;margin:12px 0}
+.result p{line-height:1.6}.small{font-size:.9rem;color:#69728a}.sparkle{font-size:1.5rem}.group-result{font-weight:900;color:#6049a8;font-size:1.15rem}
+@media(max-width:520px){body{padding:15px 10px 30px}.question{font-size:1.08rem}.option{font-size:.95rem;padding:12px}.actions{flex-direction:column}.actions button{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="eyebrow">🌈 KUIS INTERAKTIF BAHASA INDONESIA • KELAS VIII</div>
+<h1>Detektif Paragraf 🔎</h1>
+<p class="subtitle">Yuk, temukan perbedaan paragraf deskripsi dan eksposisi!</p>
+</header>
+<main class="card">
+<section class="start" id="start">
+<div class="mascot">🕵️‍♀️📚</div>
+<h2>Siap Jadi Detektif Paragraf?</h2>
+<p>Isi nama kelompok terlebih dahulu. Diskusikan setiap soal bersama teman satu kelompok, lalu pilih jawaban yang paling tepat!</p>
+<div class="field">
+<label for="groupName">Nama kelompok</label>
+<input id="groupName" type="text" maxlength="40" placeholder="Contoh: Kelompok Matahari" autocomplete="off">
+</div>
+<button class="action primary" id="begin">Mulai kuis 🚀</button>
+<p class="small">10 soal • Pilihan ganda • Pembahasan langsung setelah menjawab</p>
+</section>
+<section id="quiz" style="display:none">
+<div class="topline">
+<span class="pill" id="groupLabel">👥 Kelompok</span>
+<span class="pill" id="number">Soal 1 dari 10</span>
+<span class="pill" id="scoreLabel">⭐ Skor: 0</span>
+</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<p class="question" id="question"></p>
+<div class="options" id="options"></div>
+<div class="feedback" id="feedback" aria-live="polite"></div>
+<div class="actions">
+<button class="action restart" id="restart">↻ Kembali ke awal</button>
+<button class="action primary next" id="next">Soal berikutnya →</button>
+</div>
+</section>
+<section class="result" id="result">
+<div class="sparkle">🎉 🌟 🎊</div>
+<h2>Kuis selesai!</h2>
+<p class="group-result" id="finalGroup"></p>
+<div class="score" id="finalScore">0/10</div>
+<p id="message"></p>
+<p class="small">Terus berlatih agar semakin jago membedakan paragraf deskripsi dan eksposisi.</p>
+<button class="action primary" id="again">Main lagi 🔁</button>
+</section>
+</main>
+</div>
+<script>
+const questions=[
+{q:"🌳 Perhatikan kutipan berikut!\n\n“Taman sekolah dipenuhi tanaman hias. Bunga kertas berwarna merah muda tumbuh di sepanjang tepi jalan setapak, sedangkan pohon ketapang menaungi bangku-bangku kayu.”\n\nKutipan tersebut termasuk paragraf ....",o:["Narasi","Eksposisi","Deskripsi","Persuasi"],a:2,e:"Kutipan menggambarkan bentuk, warna, dan letak tanaman serta bangku sehingga pembaca dapat membayangkan keadaan taman."},
+{q:"🥗 Perhatikan kutipan berikut!\n\n“Kantin sekolah menyediakan makanan dan minuman bagi warga sekolah. Pengelola kantin juga perlu menjaga kebersihan tempat penyajian agar makanan tetap aman dikonsumsi.”\n\nJenis paragraf tersebut adalah ....",o:["Deskripsi","Eksposisi","Narasi","Persuasi"],a:1,e:"Kutipan menyampaikan informasi mengenai fungsi kantin dan pentingnya kebersihan. Fokusnya adalah menjelaskan informasi."},
+{q:"🎨 Kalimat manakah yang paling jelas menunjukkan ciri paragraf deskripsi?",o:["Kegiatan kerja bakti dilaksanakan setiap Jumat.","Sampah organik dapat diolah menjadi kompos.","Lapangan sekolah memiliki permukaan rumput hijau dan garis putih yang terlihat jelas.","Menjaga kebersihan merupakan tanggung jawab bersama."],a:2,e:"Kalimat ini menggambarkan keadaan fisik lapangan melalui warna rumput dan garis lapangan."},
+{q:"🦋 Perhatikan kutipan berikut!\n\n“Kupu-kupu mengalami tahapan metamorfosis yang dimulai dari telur, kemudian menjadi ulat, kepompong, dan akhirnya kupu-kupu dewasa.”\n\nMengapa kutipan tersebut termasuk paragraf eksposisi?",o:["Menggambarkan warna sayap kupu-kupu.","Menjelaskan informasi tentang tahapan metamorfosis.","Menceritakan pengalaman seseorang melihat kupu-kupu.","Mengajak pembaca memelihara kupu-kupu."],a:1,e:"Kutipan menjelaskan informasi berupa tahapan metamorfosis kupu-kupu, bukan menggambarkan penampilan fisiknya."},
+{q:"🏞️ Perhatikan kalimat berikut!\n\n“Air danau tampak jernih kehijauan. Di tepiannya tumbuh rumput pendek, sementara beberapa batu besar terlihat di bawah pohon rindang.”\n\nBukti bahwa kalimat tersebut merupakan deskripsi adalah ....",o:["Menjelaskan manfaat danau bagi masyarakat.","Menyampaikan aturan menjaga danau.","Menggambarkan warna air dan keadaan sekitar danau.","Menjelaskan proses terbentuknya danau."],a:2,e:"Kalimat menyebutkan warna air, rumput, batu, dan pohon untuk menggambarkan keadaan danau."},
+{q:"🐢 Perhatikan dua pernyataan berikut!\n\n1. “Penyu merupakan hewan reptil yang hidup di laut dan bernapas menggunakan paru-paru.”\n2. “Tempurung penyu berwarna cokelat kehijauan dengan permukaan yang tampak keras.”\n\nPerbedaan jenis paragraf yang tepat adalah ....",o:["Pernyataan 1 deskripsi, pernyataan 2 eksposisi.","Pernyataan 1 eksposisi, pernyataan 2 deskripsi.","Keduanya merupakan deskripsi.","Keduanya merupakan eksposisi."],a:1,e:"Pernyataan 1 menyampaikan informasi tentang penyu, sedangkan pernyataan 2 menggambarkan ciri fisik tempurungnya."},
+{q:"💡 Apa tujuan utama paragraf deskripsi dalam teks LHO?",o:["Mengajak pembaca melakukan sesuatu.","Menceritakan urutan suatu peristiwa.","Menggambarkan objek atau keadaan secara terperinci.","Menjelaskan langkah-langkah melakukan kegiatan."],a:2,e:"Paragraf deskripsi bertujuan memberikan gambaran terperinci agar pembaca dapat membayangkan objek atau keadaan yang diamati."},
+{q:"🌋 Perhatikan kutipan berikut!\n\n“Gunung berapi dapat mengeluarkan material seperti lava, abu vulkanik, dan gas ketika mengalami erupsi. Aktivitas gunung berapi juga dapat memengaruhi lingkungan di sekitarnya.”\n\nKutipan tersebut termasuk paragraf eksposisi karena ....",o:["Menggambarkan bentuk puncak gunung.","Menjelaskan informasi tentang aktivitas gunung berapi.","Menceritakan perjalanan pendaki ke gunung.","Menggambarkan warna pepohonan di lereng gunung."],a:1,e:"Kutipan memberikan penjelasan informatif tentang material yang dikeluarkan dan dampak aktivitas gunung berapi."},
+{q:"🐠 Seorang siswa mengidentifikasi kalimat berikut sebagai paragraf deskripsi:\n\n“Ikan badut memiliki tubuh berwarna jingga dengan garis-garis putih yang dibatasi warna hitam.”\n\nApakah alasan siswa tersebut tepat?",o:["Tepat, karena kalimat menggambarkan ciri fisik ikan.","Tepat, karena kalimat menjelaskan cara berkembang biak ikan.","Tidak tepat, karena kalimat menceritakan urutan peristiwa.","Tidak tepat, karena kalimat berisi ajakan untuk memelihara ikan."],a:0,e:"Kalimat menggambarkan warna dan pola tubuh ikan badut, sehingga berfokus pada ciri fisik objek."},
+{q:"🌾 Bacalah kedua kutipan berikut!\n\nKutipan A: “Daun tanaman padi berbentuk panjang dan ramping. Warnanya hijau muda, dengan bagian ujung yang meruncing.”\n\nKutipan B: “Tanaman padi merupakan sumber bahan pangan utama bagi banyak masyarakat Indonesia.”\n\nKesimpulan yang tepat adalah ....",o:["Kutipan A dan B sama-sama deskripsi.","Kutipan A eksposisi, sedangkan B deskripsi.","Kutipan A deskripsi, sedangkan B eksposisi.","Kutipan A dan B sama-sama eksposisi."],a:2,e:"Kutipan A menggambarkan ciri fisik daun padi, sedangkan kutipan B menyampaikan informasi tentang fungsi tanaman padi."}
+];
+let index=0,score=0,answered=false,groupName="";
+const $=id=>document.getElementById(id);
+function render(){
+ answered=false;const item=questions[index];
+ $("groupLabel").textContent="👥 "+groupName;
+ $("number").textContent=`Soal ${index+1} dari ${questions.length}`;
+ $("scoreLabel").textContent=`⭐ Skor: ${score}`;
+ $("bar").style.width=`${index/questions.length*100}%`;
+ $("question").textContent=item.q;$("options").innerHTML="";
+ $("feedback").className="feedback";$("feedback").innerHTML="";$("next").style.display="none";
+ item.o.forEach((option,i)=>{const btn=document.createElement("button");btn.className="option";btn.innerHTML=`<span class="letter">${"ABCD"[i]}</span><span>${option}</span>`;btn.addEventListener("click",()=>choose(i));$("options").appendChild(btn)});
+}
+function choose(choice){
+ if(answered)return;answered=true;const item=questions[index],buttons=[...$("options").children];
+ buttons.forEach((b,i)=>{b.disabled=true;if(i===item.a)b.classList.add("correct");if(i===choice&&choice!==item.a)b.classList.add("wrong")});
+ const good=choice===item.a;if(good)score++;
+ $("scoreLabel").textContent=`⭐ Skor: ${score}`;
+ const box=$("feedback");box.className=`feedback show ${good?"good":"bad"}`;
+ box.innerHTML=`<strong>${good?"🎉 Hebat! Jawaban kelompok tepat!":"💡 Belum tepat, yuk pelajari bersama!"}</strong><span>${item.e}</span>`;
+ $("next").textContent=index===questions.length-1?"Lihat hasil 🎊":"Soal berikutnya →";$("next").style.display="inline-block";
+ $("bar").style.width=`${(index+1)/questions.length*100}%`;
+}
+function finish(){
+ $("quiz").style.display="none";$("result").style.display="block";
+ $("finalGroup").textContent="Hasil "+groupName;
+ $("finalScore").textContent=`${score}/${questions.length}`;
+ $("message").textContent=score>=9?"Luar biasa! Kelompok kalian detektif paragraf yang hebat! 🌟":score>=7?"Bagus sekali! Terus pertahankan kerja sama kelompok kalian. ✨":score>=5?"Usaha kalian bagus! Pelajari kembali pembahasannya dan terus berlatih. 💪":"Jangan menyerah! Diskusikan kembali ciri paragraf deskripsi dan eksposisi, lalu coba lagi. 🌈";
+}
+function backToStart(){
+ index=0;score=0;$("result").style.display="none";$("quiz").style.display="none";$("start").style.display="block";$("groupName").value="";$("groupName").focus();
+}
+$("begin").addEventListener("click",()=>{const name=$("groupName").value.trim();if(!name){$("groupName").focus();$("groupName").placeholder="Nama kelompok harus diisi dulu ya!";return}groupName=name;$("start").style.display="none";$("quiz").style.display="block";render()});
+$("groupName").addEventListener("keydown",e=>{if(e.key==="Enter")$("begin").click()});
+$("next").addEventListener("click",()=>{if(index<questions.length-1){index++;render()}else finish()});
+$("restart").addEventListener("click",backToStart);$("again").addEventListener("click",backToStart);
+</script>
+</body>
+</html>
